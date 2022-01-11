@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Barang;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Role;
 
-class UserController extends Controller
+class BarangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        return view('admin.users.index')->with('users', User::all());
+        //
     }
 
     /**
@@ -62,11 +57,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if( Auth::user()->id == $id){
-            return redirect()->route('admin.users.index')->with('warning', 'You are not allowed to edit yourself.');
-        }
-
-        return view('admin.users.edit')->with([ 'user' => User::find($id) , 'roles' => Role::all() ]);
+        //
     }
 
     /**
@@ -79,18 +70,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if( Auth::user()->id == $id){
-            return redirect()->route('admin.users.index')->with('warning', 'You are not allowed to edit yourself.');
-        }
-        
-        $user = User::find($id);
-        
-        $user->role()->sync($request->roles);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-
-        return redirect()->route('admin.users.index')->with('success', $user->name.' has been updated.');
     }
 
     /**
@@ -100,8 +79,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {                
-        User::destroy($id);
-        return redirect()->back();
+    {
+        //
     }
 }

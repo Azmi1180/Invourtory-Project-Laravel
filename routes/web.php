@@ -24,6 +24,37 @@ Route::get('/admin', function(){
 })->middleware(['auth', 'auth.admin']);
 
 
-Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
-    Route::resource('/user', 'UserController', ['except' => ['show', 'create', 'store']]);    
+// Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
+//     Route::resource('/user', 'UserController', ['except' => ['show', 'create', 'store']]);
+// });
+
+// Route::namespace('Admin')
+// ->prefix('admin')
+// ->name('admin.')
+// ->middleware(['auth', 'auth.admin'])
+// ->group(function(){
+//     Route::resource('/user', 'UserController', ['except' => ['show', 'create', 'store']]);    
+//     // Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
+// });
+
+
+
+Route::namespace('Admin')
+->prefix('admin')
+->name('admin.')
+->middleware(['auth', 'auth.admin', 'verified'])
+->group(function(){
+    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+    Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
 });
+
+
+// Route::namespace('Admin')
+// ->prefix('admin')
+// ->name('admin.')
+// ->middleware(['auth', 'auth.admin'])
+// ->group(function(){
+//     Route::get('/user/index', 'Admin\\UserController@index');
+//     Route::get('/user/{user}/edit', 'Admin\\UserController@edit');
+// });
+

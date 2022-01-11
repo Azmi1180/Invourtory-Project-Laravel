@@ -34,8 +34,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.index') }}">Manage Users</a>
+                            <a href="{{ route('admin.users.index') }}">Manage Users</a>
                         </li>
+
+                        <li class=" ml-4 nav-item">
+                            <a href="{{ route('admin.users.index') }}">Daftar Barang</a>
+                        </li>
+
+                        <li class=" ml-4 nav-item">
+                            <a href="{{ route('admin.users.index') }}">Inventory</a>
+                        </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,7 +83,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
+            @include('partials.alerts')
             @yield('content')
         </main>
     </div>
