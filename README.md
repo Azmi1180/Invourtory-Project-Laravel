@@ -22,8 +22,6 @@ composer global require laravel/installer
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
 * PHP >= 7.1.3
 * BCMath PHP Extension
 * Ctype PHP Extension
