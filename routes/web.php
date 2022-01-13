@@ -45,10 +45,25 @@ Route::namespace('Admin')
 ->middleware(['auth', 'auth.admin', 'verified'])
 ->group(function(){
     Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
-    Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
+    // Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
 });
 
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/barang/index', 'Barang\\BarangController@index');
+    
+    Route::group(['middleware' => ['auth.admin']], function (){
+        Route::get('/barang/create', 'Barang\\BarangController@create');
+        Route::post('/barang/store', 'Barang\\BarangController@store');
+        Route::get('/barang/{id}/edit', 'Barang\\BarangController@edit');
+        Route::post('/barang/{id}/update', 'Barang\\BarangController@update');
+        Route::get('/barang/{id}/delete', 'Barang\\BarangController@destroy');
+    });
+    
+
+    // Route::post('/laporanperkembangan/store', 'middle\\programController@storelaporanperkembangan');
+    
+});
 // Route::namespace('Admin')
 // ->prefix('admin')
 // ->name('admin.')

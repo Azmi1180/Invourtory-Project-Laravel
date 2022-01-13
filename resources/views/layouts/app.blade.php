@@ -33,12 +33,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @hasRole(['admin', 'staff'])
                         <li class="nav-item">
                             <a href="{{ route('admin.users.index') }}">Manage Users</a>
                         </li>
+                        @endhasRole
+
+                        @hasRole('staff')
+                        <li class="nav-item">
+                            <a href="{{ route('admin.users.index') }}">Manage Users</a>
+                        </li>
+                        @endhasRole
+
 
                         <li class=" ml-4 nav-item">
-                            <a href="{{ route('admin.users.index') }}">Daftar Barang</a>
+                            <a href="/barang/index">Daftar Barang</a>
                         </li>
 
                         <li class=" ml-4 nav-item">

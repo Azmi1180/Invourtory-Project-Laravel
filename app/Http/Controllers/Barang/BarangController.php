@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Barang;
 
 use Illuminate\Http\Request;
+use App\Barang;
 use App\Http\Controllers\Controller;
 
 class BarangController extends Controller
@@ -15,6 +16,10 @@ class BarangController extends Controller
     public function index()
     {
         //
+        // $barang = Barang::all();
+
+        // return view('barang.daftar', ['barang' => $barang])->with('barang', Barang::paginate(10));
+        return view('barang.daftar')->with('barang', Barang::paginate(10));
     }
 
     /**
@@ -25,6 +30,7 @@ class BarangController extends Controller
     public function create()
     {
         //
+        return view('barang.create');
     }
 
     /**
@@ -35,7 +41,25 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //(==========*== Start of Note "ini fitur validasi input untuk nanti"==*==========)
+
+        // $this->validate($request, [
+            
+        // ], [
+            
+        // ]);
+
+        //(==========*== End of Note "ini fitur validasi input untuk nanti"==*==========)
+        
+        // $barang = new Barang;
+        // $barang->nama_barang = $request->nama;
+        // $barang->satuan = $request->satuan;
+        // $barang->stok_awal = $request->stok_awal;
+
+
+        Barang::create($request->all());
+        
+        return redirect('barang/index');
     }
 
     /**
@@ -58,6 +82,8 @@ class BarangController extends Controller
     public function edit($id)
     {
         //
+        $barang = Barang::find($id);
+        return view('barang.editBarang', ['barang' => $barang]);
     }
 
     /**
@@ -70,6 +96,9 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $barang = Barang::find($id);
+        $barang->update($request->all());
+        return redirect('/barang/index');
     }
 
     /**
@@ -81,5 +110,7 @@ class BarangController extends Controller
     public function destroy($id)
     {
         //
+        Barang::destroy($id);
+        return redirect()->back();
     }
 }

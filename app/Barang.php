@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     //
-    public function userStorages()
-    {   
-        return $this->belongsToMany('App\User');
-    }
+    protected $table = 'barang';
+
+    protected $fillable = ['nama_barang', 'satuan', 'stok_awal'];
 }

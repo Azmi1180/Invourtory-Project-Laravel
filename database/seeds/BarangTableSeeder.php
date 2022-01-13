@@ -12,7 +12,7 @@ class BarangTableSeeder extends Seeder
     public function run()
     {
         //        
-        DB::table('table_barang')->insert([
+        DB::table('barang')->insert([
             [
                 'nama_barang' => "Pensil",
                 'satuan' => "PCS",
