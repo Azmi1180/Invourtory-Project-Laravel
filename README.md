@@ -45,11 +45,7 @@ Sumber
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Cara menjalankan program
 
 
 Setelah menginstall semua yang diperlukan, clone project ini.
