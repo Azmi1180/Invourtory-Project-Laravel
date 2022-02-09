@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Barang;
 
 use Illuminate\Http\Request;
 use App\Barang;
+use Auth;
+
 use App\Http\Controllers\Controller;
 
 class BarangController extends Controller
@@ -16,10 +18,12 @@ class BarangController extends Controller
     public function index()
     {
         //
-        // $barang = Barang::all();
+        // $user = User::;
+        $user = Auth::user()->id;
+        
+        return view('barang.daftar', ['user' => $user])->with('barang', Barang::paginate(10));
 
-        // return view('barang.daftar', ['barang' => $barang])->with('barang', Barang::paginate(10));
-        return view('barang.daftar')->with('barang', Barang::paginate(10));
+        // return view('barang.daftar')->with('barang', Barang::paginate(10));
     }
 
     /**
@@ -68,9 +72,25 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+    public function indexInventory()
+    {                 
+           return view('barang/inventory');
+           
+    }
+    public function formPinjam($id)
     {
-        //
+        $barang = Barang::find($id);
+
+        return view('barang/formpinjam', ['barang' => $barang]);
+    }
+    
+    public function pinjam($id)
+    {
+           $user = Auth::user()->id;
+           
+        //    return view('barang/inventory');
+           
     }
 
     /**

@@ -17,7 +17,7 @@ class CreateTableBarang extends Migration
             $table->bigIncrements('id');
             $table->string('nama_barang');
             $table->string('satuan');
-            $table->string('stok_awal');
+            $table->integer('stok_awal');
             $table->timestamps();
         });
     }

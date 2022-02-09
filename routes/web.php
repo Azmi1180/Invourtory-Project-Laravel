@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -50,6 +50,9 @@ Route::namespace('Admin')
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    // Route Untuk Page Barang
+
     Route::get('/barang/index', 'Barang\\BarangController@index');
     
     Route::group(['middleware' => ['auth.admin']], function (){
@@ -58,7 +61,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/barang/{id}/edit', 'Barang\\BarangController@edit');
         Route::post('/barang/{id}/update', 'Barang\\BarangController@update');
         Route::get('/barang/{id}/delete', 'Barang\\BarangController@destroy');
+
+        Route::get('/barang/pinjam/{id}', 'Barang\\BarangController@formpinjam');
+
     });
+
+    Route::get('/barang/{id_user}/pinjam/{id_barang}', 'Barang\\BarangController@pinjam');
+
+    // Route untuk penyimpanan (storage atau inventory)
+
+    Route::get('/inventory/index', 'Barang\\BarangController@indexInventory');
+    
+    
     
 
     // Route::post('/laporanperkembangan/store', 'middle\\programController@storelaporanperkembangan');

@@ -25,7 +25,7 @@
                           <tr>
                             <td>{{ $barangs->nama_barang }}</td>
                             <td>{{ $barangs->satuan }}</td>
-                            <td>{{ $barangs->stok_awal }}</td>                 
+                            <td>{{ $barangs->stok_awal }}</td>
                             {{-- <td>
                                 <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
                                   <button type="button" class="btn btn-primary btn-sm">Edit</button>
@@ -39,11 +39,11 @@
                               </td> --}}
                               
                               <td>
-                                <a href="" class="float-left">
+                                <a href="/barang/pinjam/{{ $barangs->id }}" class="float-left">
                                     <button type="button" class="btn btn-warning btn-sm">Pinjam</button>
                                 </a>
                                 
-                                @hasRole(['admin', 'staff'])
+                                @hasRole('admin')
                                 <a href="/barang/{{ $barangs->id }}/edit" class="ml-4 float-left">
                                     <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                 </a>
@@ -53,7 +53,7 @@
                                 </a>                                
                                 @endhasRole
 
-                                {{-- @hasRole('staff')
+                                @hasRole('staff')
                                 <a href="" class="ml-4 float-left">
                                     <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                 </a>
@@ -62,7 +62,7 @@
                                 <a href="" class="ml-4 float-left">
                                     <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                 </a>
-                                @endhasRole --}}
+                                @endhasRole
 
                                 {{-- @hasRole('staff')
                                 <a href="" class="float-left">
