@@ -15,16 +15,26 @@
                         <thead>
                           <tr>
                             <th scope="col">Nama Barang</th>
-                            <th scope="col">Satuan</th>
                             <th scope="col">Jumlah</th>
+                            <th scope="col">Deskripsi</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td class=""></td>
-                          </tr>
+                        @foreach ($inventory as $inv)
+                          @if ($inv->user_id == Auth::user()->id)
+                            <tr>
+                              <td>{{ $inv->barangs->nama_barang }}</td>
+                              <td>{{ $inv->jumlah }}</td>
+                              <td>{{ $inv->deskripsi }}</td>
+                              <td>
+                                <a href="#">Kembalikan</a>
+                              </td>
+                            </tr>
+                          @endif
+                          
 
+                        @endforeach
                         </tbody>
                       </table>
                 </div>

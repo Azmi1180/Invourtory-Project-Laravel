@@ -8,7 +8,7 @@
                 <div class="card-header">Pinjam {{ $barang->nama_barang }}</div>
 
                 <div class="card-body">
-                    <form action="/barang/{{$barang->id}}/pinjambarang" method="POST">
+                    <form action="/barang/{{$barang->id}}/pinjam" method="POST">
                         {{ csrf_field() }}
 
                         <label for="nama" class="control-label mt-3">Nama Barang</label>
@@ -20,6 +20,9 @@
                         <label for="recipient-name" class="control-label mt-4">Jumlah Stok Saat ini</label>
                         <p>{{ $barang->stok_awal }}</p>
                         
+                        <label for="recipient-name" class="control-label mt-4">Deskripsi</label>
+                        <textarea name="deskripsi" id="textarea" cols="30" rows="10"></textarea>
+
                         <button type="submit" class="btn btn-primary mt-4">Pinjam</button>
                         {{-- <a href="/barang/edit/{{ $barang->id }}/"></a> --}}
                         

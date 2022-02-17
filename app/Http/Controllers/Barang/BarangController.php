@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Barang;
 
 use Illuminate\Http\Request;
+
 use App\Barang;
+use App\User;
+use App\Inventory;
+
 use Auth;
+
 
 use App\Http\Controllers\Controller;
 
@@ -74,8 +79,9 @@ class BarangController extends Controller
      */
 
     public function indexInventory()
-    {                 
-           return view('barang/inventory');
+    {   
+        $inventory = Inventory::all();
+        return view('barang/inventory', ['inventory' => $inventory]);
            
     }
     public function formPinjam($id)
@@ -85,11 +91,32 @@ class BarangController extends Controller
         return view('barang/formpinjam', ['barang' => $barang]);
     }
     
-    public function pinjam($id)
+    public function pinjam( Request $request, $idBarang)
     {
-           $user = Auth::user()->id;
-           
-        //    return view('barang/inventory');
+        // dd($idBarang);
+        $inventory = new Inventory();   
+        $barang = Barang::find($idBarang);
+        $user = Auth::user()->id;
+        $stok_awal = (int)$barang->stok_awal;
+        $jumlah = (int)$request->jumlah;
+
+        if($stok_awal < $jumlah){
+            return redirect()->route('barang/formpinjam')->with('warning', 'Jumlah yang diminta melebihi stok yang tersedia');
+        }
+
+        $inventory->barang_id = $idBarang;
+        $inventory->user_id = $user;
+        $inventory->jumlah = $request->jumlah;
+        $inventory->deskripsi = $request->deskripsi;
+        $inventory->save();
+
+        $jumlah_akhir = $stok_awal - $jumlah;
+        
+
+        $barang->stok_awal = $jumlah_akhir;
+        $barang->save();
+        
+        return redirect('inventory/index');
            
     }
 

@@ -12,6 +12,6 @@ class Barang extends Model
     protected $fillable = ['nama_barang', 'satuan', 'stok_awal'];
     
     public function inventory(){
-        return $this->belongsToMany('App\Inventory');
+        return $this->hasMany('App\Inventory', 'barang_id', 'id');
     }
 }

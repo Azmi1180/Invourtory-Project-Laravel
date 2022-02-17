@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     //
-    protected $table = 'barang';
+    protected $table = 'inventory';
 
-    protected $fillable = ['nama_barang', 'satuan', 'stok_awal'];
+    protected $fillable = ['barang_id', 'user_id', 'deskripsi', 'jumlah'];
 
     public function barangs(){
-        return $this->belongsToMany('App\Barang');
+        return $this->belongsTo('App\Barang', 'barang_id', 'id');
     }
 
     public function users(){

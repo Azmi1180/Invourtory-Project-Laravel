@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
-    Route::get('/barang/{id_user}/pinjam/{id_barang}', 'Barang\\BarangController@pinjam');
+    Route::post('/barang/{idBarang}/pinjam', 'Barang\\BarangController@pinjam');
 
     // Route untuk penyimpanan (storage atau inventory)
 
