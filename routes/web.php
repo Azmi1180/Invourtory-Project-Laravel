@@ -62,11 +62,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/barang/{id}/update', 'Barang\\BarangController@update');
         Route::get('/barang/{id}/delete', 'Barang\\BarangController@destroy');
 
-        Route::get('/barang/pinjam/{id}', 'Barang\\BarangController@formpinjam');
+        
 
     });
-
+    
+    Route::get('/barang/pinjam/{id}', 'Barang\\BarangController@formpinjam');
     Route::post('/barang/{idBarang}/pinjam', 'Barang\\BarangController@pinjam');
+    // Route::get('/barang/{idBarang}/kembalikan', 'Barang\\BarangController@kembali');
 
     // Route untuk penyimpanan (storage atau inventory)
 
